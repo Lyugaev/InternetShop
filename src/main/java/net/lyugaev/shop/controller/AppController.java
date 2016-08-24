@@ -23,25 +23,19 @@ import net.lyugaev.shop.service.ProductService;
 public class AppController {
 
     @Autowired
-    ProductService service;
+    ProductService productService;
 
     @Autowired
     MessageSource messageSource;
 
-    /*
-     * This method will list all existing products.
-     */
     @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
     public String listProducts(ModelMap model) {
 
-        List<Product> products = service.findAllProducts();
+        List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "allproducts";
     }
 
-    /*
-     * This method will provide the medium to add a new product.
-     */
     @RequestMapping(value = { "/new" }, method = RequestMethod.GET)
     public String newProduct(ModelMap model) {
         Product product = new Product();
@@ -50,10 +44,6 @@ public class AppController {
         return "registration";
     }
 
-    /*
-     * This method will be called on form submission, handling POST request for
-     * saving product in database. It also validates the user input
-     */
     @RequestMapping(value = { "/new" }, method = RequestMethod.POST)
     public String saveProduct(@Valid Product product, BindingResult result,
                                ModelMap model) {
@@ -61,70 +51,38 @@ public class AppController {
         if (result.hasErrors()) {
             return "registration";
         }
- 
-        /*
-         * Preferred way to achieve uniqueness of field [sku] should be implementing custom @Unique annotation
-         * and applying it on field [sku] of Model class [Product].
-         * 
-         * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
-         * framework as well while still using internationalized messages.
-         * 
-         */
-        if(!service.isProductSkuUnique(product.getId(), product.getSku())){
-            FieldError skuError =new FieldError("product","sku",messageSource.getMessage("non.unique.sku", new String[]{product.getSku()}, Locale.getDefault()));
-            result.addError(skuError);
-            return "registration";
-        }
 
-        service.saveProduct(product);
+        productService.saveProduct(product);
 
         model.addAttribute("success", "Product " + product.getName() + " registered successfully");
         return "success";
     }
 
-
-    /*
-     * This method will provide the medium to update an existing product.
-     */
-    @RequestMapping(value = { "/edit-{sku}-product" }, method = RequestMethod.GET)
-    public String editProduct(@PathVariable String sku, ModelMap model) {
-        Product product = service.findProductBySku(sku);
+    @RequestMapping(value = { "/edit-{id}-product" }, method = RequestMethod.GET)
+    public String editProduct(@PathVariable int id, ModelMap model) {
+        Product product = productService.findById(id);
         model.addAttribute("product", product);
         model.addAttribute("edit", true);
         return "registration";
     }
 
-    /*
-     * This method will be called on form submission, handling POST request for
-     * updating product in database. It also validates the user input
-     */
-    @RequestMapping(value = { "/edit-{sku}-product" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/edit-{id}-product" }, method = RequestMethod.POST)
     public String updateProduct(@Valid Product product, BindingResult result,
-                                 ModelMap model, @PathVariable String sku) {
+                                 ModelMap model, @PathVariable int id) {
 
         if (result.hasErrors()) {
             return "registration";
         }
 
-        if(!service.isProductSkuUnique(product.getId(), product.getSku())){
-            FieldError skuError =new FieldError("product","sku",messageSource.getMessage("non.unique.sku", new String[]{product.getSku()}, Locale.getDefault()));
-            result.addError(skuError);
-            return "registration";
-        }
-
-        service.updateProduct(product);
+        productService.updateProduct(product);
 
         model.addAttribute("success", "Product " + product.getName()  + " updated successfully");
         return "success";
     }
 
-
-    /*
-     * This method will delete an product by it's SKU value.
-     */
-    @RequestMapping(value = { "/delete-{sku}-product" }, method = RequestMethod.GET)
-    public String deleteProduct(@PathVariable String sku) {
-        service.deleteProductBySku(sku);
+    @RequestMapping(value = { "/delete-{id}-product" }, method = RequestMethod.GET)
+    public String deleteProduct(@PathVariable int id) {
+        productService.deleteProductById(id);
         return "redirect:/list";
     }
 

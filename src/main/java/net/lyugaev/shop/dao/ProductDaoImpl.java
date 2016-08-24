@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import net.lyugaev.shop.model.Product;
@@ -20,9 +19,9 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         persist(product);
     }
 
-    public void deleteProductBySku(String sku) {
-        Query query = getSession().createSQLQuery("delete from Product where sku = :sku");
-        query.setString("sku", sku);
+    public void deleteProductById(int id) {
+        Query query = getSession().createSQLQuery("delete from Product where id = :id");
+        query.setInteger("id", id);
         query.executeUpdate();
     }
 
@@ -30,11 +29,5 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     public List<Product> findAllProducts() {
         Criteria criteria = createEntityCriteria();
         return (List<Product>) criteria.list();
-    }
-
-    public Product findProductBySku(String sku) {
-        Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("sku", sku));
-        return (Product) criteria.uniqueResult();
     }
 }

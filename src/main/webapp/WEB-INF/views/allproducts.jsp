@@ -20,7 +20,7 @@
 <h2>List of products</h2>
 <table>
     <tr>
-        <td>NAME</td><td>Added Date</td><td>Price</td><td>Description</td><td>SKU</td><td></td>
+        <td>NAME</td><td>Added Date</td><td>Price</td><td>Description</td><td></td>
     </tr>
     <c:forEach items="${products}" var="product">
         <tr>
@@ -28,8 +28,8 @@
             <td>${product.addedDate}</td>
             <td>${product.price}</td>
             <td>${product.description}</td>
-            <td><a href="<c:url value='/edit-${product.sku}-product' />">${product.sku}</a></td>
-            <td><a href="<c:url value='/delete-${product.sku}-product' />">delete</a></td>
+            <td><a href="<c:url value='/edit-${product.id}-product' />">edit</a></td>
+            <td><a href="<c:url value='/delete-${product.id}-product' />">delete</a></td>
         </tr>
     </c:forEach>
 </table>

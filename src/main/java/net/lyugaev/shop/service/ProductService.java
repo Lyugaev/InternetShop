@@ -12,12 +12,7 @@ public interface ProductService {
 
     void updateProduct(Product product);
 
-    void deleteProductBySku(String sku);
+    void deleteProductById(int id);
 
     List<Product> findAllProducts();
-
-    Product findProductBySku(String sku);
-
-    boolean isProductSkuUnique(Integer id, String sku);
-
 }

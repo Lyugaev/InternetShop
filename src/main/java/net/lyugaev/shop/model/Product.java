@@ -38,10 +38,6 @@ public class Product {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
-    @NotEmpty
-    @Column(name = "SKU", unique=true, nullable = false)
-    private String sku;
-
     @Column(name = "DESCRIPTION")
     private String description;
 
@@ -85,46 +81,33 @@ public class Product {
         this.price = price;
     }
 
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((sku == null) ? 0 : sku.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!(obj instanceof Product))
-            return false;
-        Product other = (Product) obj;
-        if (id != other.id)
-            return false;
-        if (sku == null) {
-            if (other.sku != null)
-                return false;
-        } else if (!sku.equals(other.sku))
-            return false;
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", addedDate="
-                + addedDate + ", price=" + price + ", sku=" + sku + "]";
-    }
+//    @Override
+//    public int hashCode() {
+//        final int prime = 31;
+//        int result = 1;
+//        result = prime * result + Integer.parseInt(id);
+//        return result;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj)
+//            return true;
+//        if (obj == null)
+//            return false;
+//        if (!(obj instanceof Product))
+//            return false;
+//        Product other = (Product) obj;
+//        if (id != other.id)
+//            return false;
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Product [id=" + id + ", name=" + name + ", addedDate="
+//                + addedDate + ", price=" + price + "]";
+//    }
 
 }

@@ -50,12 +50,6 @@
         </tr>
 
         <tr>
-            <td><label for="sku">SKU: </label> </td>
-            <td><form:input path="sku" id="sku"/></td>
-            <td><form:errors path="sku" cssClass="error"/></td>
-        </tr>
-
-        <tr>
             <td colspan="3">
                 <c:choose>
                     <c:when test="${edit}">

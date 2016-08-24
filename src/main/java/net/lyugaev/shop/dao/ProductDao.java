@@ -10,10 +10,7 @@ public interface ProductDao {
 
     void saveProduct(Product product);
 
-    void deleteProductBySku(String sku);
+    void deleteProductById(int id);
 
     List<Product> findAllProducts();
-
-    Product findProductBySku(String sku);
-
 }
