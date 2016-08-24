@@ -54,8 +54,7 @@ public class AppController {
 
         productService.saveProduct(product);
 
-        model.addAttribute("success", "Product " + product.getName() + " registered successfully");
-        return "success";
+        return "redirect:/list";
     }
 
     @RequestMapping(value = { "/edit-{id}-product" }, method = RequestMethod.GET)
@@ -76,8 +75,7 @@ public class AppController {
 
         productService.updateProduct(product);
 
-        model.addAttribute("success", "Product " + product.getName()  + " updated successfully");
-        return "success";
+        return "redirect:/list";
     }
 
     @RequestMapping(value = { "/delete-{id}-product" }, method = RequestMethod.GET)
@@ -86,4 +84,8 @@ public class AppController {
         return "redirect:/list";
     }
 
+    @RequestMapping(value = { "/goCart" }, method = RequestMethod.GET)
+    public String goShoppingCart(ModelMap model) {
+        return "shoppingCart";
+    }
 }
