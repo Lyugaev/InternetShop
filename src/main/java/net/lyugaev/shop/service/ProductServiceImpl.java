@@ -2,7 +2,7 @@ package net.lyugaev.shop.service;
 
 import java.util.List;
 
-import net.lyugaev.shop.model.Product;
+import net.lyugaev.shop.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

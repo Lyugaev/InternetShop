@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import net.lyugaev.shop.model.Product;
+import net.lyugaev.shop.entity.Product;
 
 @Repository("productDao")
 public class ProductDaoImpl extends AbstractDao<Integer, Product> implements ProductDao {

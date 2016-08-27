@@ -27,7 +27,7 @@
 
 <table>
     <tr>
-        <td>NAME</td><td>Added Date</td><td>Price</td><td>Description</td><td></td>
+        <td>Name</td><td>Receipt date</td><td>Price</td><td>Description</td><td></td>
     </tr>
     <c:forEach items="${products}" var="product">
         <tr>
@@ -35,6 +35,7 @@
             <td>${product.addedDate}</td>
             <td>${product.price}</td>
             <td>${product.description}</td>
+            <td><a href="<c:url value='/add-${product.id}-to-cart' />">add to cart</a></td>
             <td><a href="<c:url value='/edit-${product.id}-product' />">edit</a></td>
             <td><a href="<c:url value='/delete-${product.id}-product' />">delete</a></td>
         </tr>

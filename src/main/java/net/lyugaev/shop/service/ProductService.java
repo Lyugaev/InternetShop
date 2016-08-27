@@ -2,7 +2,7 @@ package net.lyugaev.shop.service;
 
 import java.util.List;
 
-import net.lyugaev.shop.model.Product;
+import net.lyugaev.shop.entity.Product;
 
 public interface ProductService {
 
