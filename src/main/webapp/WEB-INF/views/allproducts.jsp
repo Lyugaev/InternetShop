@@ -37,7 +37,7 @@
             <td>${product.description}</td>
             <td><a href="<c:url value='/add-${product.id}-to-cart' />">add to cart</a></td>
             <td><a href="<c:url value='/edit-${product.id}-product' />">edit</a></td>
-            <td><a href="<c:url value='/delete-${product.id}-product' />">delete</a></td>
+            <%--<td><a href="<c:url value='/delete-${product.id}-product' />">delete</a></td>--%>
         </tr>
     </c:forEach>
 </table>

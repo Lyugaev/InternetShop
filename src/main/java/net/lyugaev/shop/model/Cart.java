@@ -49,8 +49,8 @@ public class Cart {
         }
     }
 
-    public void removeProduct(ProductInfo productInfo) {
-        CartLineInfo line = this.findLineById(productInfo.getId());
+    public void removeProduct(int id) {
+        CartLineInfo line = this.findLineById(id);
         if (line != null) {
             this.cartLines.remove(line);
         }
