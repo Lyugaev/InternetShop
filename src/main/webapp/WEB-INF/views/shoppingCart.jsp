@@ -28,23 +28,30 @@
 </c:if>
 
 <c:if test="${not empty cartForm and not empty cartForm.cartLines}">
+    <form:form method="POST" modelAttribute="cartForm"
+               action="${pageContext.request.contextPath}/shoppingCartUpdateQuantity">
 
-    <table>
-        <tr>
-            <td>Name</td><td>Price</td><td>Quantity</td><td></td>
-        </tr>
-        <c:forEach items="${cartForm.cartLines}" var="cartLineInfo">
+        <table>
             <tr>
-                <td>${cartLineInfo.productInfo.name}</td>
-                <td>${cartLineInfo.productInfo.price}</td>
-                <td align="right">${cartLineInfo.quantity}</td>
-                <td><a href="<c:url value='/shoppingCartRemoveProduct${cartLineInfo.productInfo.id}' />">delete</a></td>
+                <td>Name</td><td>Price</td><td>Quantity</td><td></td>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${cartForm.cartLines}" var="cartLineInfo" varStatus="varStatus">
+                <tr>
+                    <td style="display:none;"><form:hidden
+                            path="cartLines[${varStatus.index}].productInfo.id"/></td>
+                    <td>${cartLineInfo.productInfo.name}</td>
+                    <td>${cartLineInfo.productInfo.price}</td>
+                    <td align="right"><form:input
+                            path="cartLines[${varStatus.index}].quantity"/></td>
+                    <td><a href="<c:url value='/shoppingCartRemoveProduct${cartLineInfo.productInfo.id}' />">delete</a></td>
+                </tr>
+            </c:forEach>
+        </table>
 
-    <br/>
-    <a href="<c:url value='/shoppingCartUpdateQuantity' />">Update quantity</a>
+        <br/>
+        <input type="submit" value="Update quantity"/>
+
+    </form:form>
 
 </c:if>
 

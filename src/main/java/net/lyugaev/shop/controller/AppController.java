@@ -10,17 +10,20 @@ import net.lyugaev.shop.model.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import net.lyugaev.shop.entity.Product;
 import net.lyugaev.shop.service.ProductService;
 import net.lyugaev.shop.utils.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Controller
+@Transactional
+@EnableWebMvc
 @RequestMapping("/")
 public class AppController {
 
@@ -30,19 +33,19 @@ public class AppController {
     @Autowired
     MessageSource messageSource;
 
-//    @InitBinder
-//    public void myInitBinder(WebDataBinder dataBinder) {
-//        Object target = dataBinder.getTarget();
-//        if (target == null) {
-//            return;
-//        }
-//        System.out.println("Target=" + target);
-//
-//        //for cartForm
-//        if (target.getClass() == Cart.class) {
-//
-//        }
-//    }
+    @InitBinder
+    public void myInitBinder(WebDataBinder dataBinder) {
+        Object target = dataBinder.getTarget();
+        if (target == null) {
+            return;
+        }
+        System.out.println("Target=" + target);
+
+        //for cartForm
+        if (target.getClass() == Cart.class) {
+
+        }
+    }
 
     @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
     public String listProducts(HttpServletRequest request, ModelMap model) {
@@ -101,6 +104,7 @@ public class AppController {
 //        return "redirect:/list";
 //    }
 
+    //add prodyct to cart
     @RequestMapping(value = { "/add-{id}-to-cart" }, method = RequestMethod.GET)
     public String addProductToCart(HttpServletRequest request, @PathVariable int id) {
         Product product = productService.findById(id);
@@ -117,10 +121,23 @@ public class AppController {
         return "shoppingCart";
     }
 
+    //delete product from cart
     @RequestMapping(value = { "/shoppingCartRemoveProduct{id}" }, method = RequestMethod.GET)
     public String  shoppingCartRemoveProduct(HttpServletRequest request, ModelMap model, @PathVariable int id) {
         Cart cart = SessionManager.getCartInSession(request);
         cart.removeProduct(id);
+        return "redirect:/goCart";
+    }
+
+    //update quantity of product in cart.
+    @RequestMapping(value = { "/shoppingCartUpdateQuantity" }, method = RequestMethod.POST)
+    public String shoppingCartUpdateQty(HttpServletRequest request, ModelMap model,
+                                        @ModelAttribute("cartForm") Cart cartForm) {
+
+        Cart cart = SessionManager.getCartInSession(request);
+        cart.updateQuantity(cartForm);
+
+        // Redirect to shoppingCart page.
         return "redirect:/goCart";
     }
 }

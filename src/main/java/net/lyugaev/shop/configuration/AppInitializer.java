@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -24,6 +25,9 @@ public class AppInitializer implements WebApplicationInitializer {
 
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
+
+        ContextLoaderListener contextLoaderListener = new ContextLoaderListener(ctx);
+        container.addListener(contextLoaderListener);
     }
 
 }
