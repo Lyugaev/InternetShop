@@ -108,7 +108,7 @@ public class AppController {
     @RequestMapping(value = { "/add-{id}-to-cart" }, method = RequestMethod.GET)
     public String addProductToCart(HttpServletRequest request, @PathVariable int id) {
         Product product = productService.findById(id);
-        Cart cart = SessionManager.getCartInSession(request);
+        Cart cart = Utils.getCartInSession(request);
         ProductInfo productInfo = new ProductInfo(product);
         cart.addProduct(productInfo, 1);
         return "redirect:/list";
@@ -116,7 +116,7 @@ public class AppController {
 
     @RequestMapping(value = { "/goCart" }, method = RequestMethod.GET)
     public String goShoppingCart(HttpServletRequest request, ModelMap model) {
-        Cart cart = SessionManager.getCartInSession(request);
+        Cart cart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", cart);
         return "shoppingCart";
     }
@@ -124,7 +124,7 @@ public class AppController {
     //delete product from cart
     @RequestMapping(value = { "/shoppingCartRemoveProduct{id}" }, method = RequestMethod.GET)
     public String  shoppingCartRemoveProduct(HttpServletRequest request, ModelMap model, @PathVariable int id) {
-        Cart cart = SessionManager.getCartInSession(request);
+        Cart cart = Utils.getCartInSession(request);
         cart.removeProduct(id);
         return "redirect:/goCart";
     }
@@ -134,7 +134,7 @@ public class AppController {
     public String shoppingCartUpdateQty(HttpServletRequest request, ModelMap model,
                                         @ModelAttribute("cartForm") Cart cartForm) {
 
-        Cart cart = SessionManager.getCartInSession(request);
+        Cart cart = Utils.getCartInSession(request);
         cart.updateQuantity(cartForm);
 
         // Redirect to shoppingCart page.
