@@ -36,4 +36,9 @@ public class AdminController {
         model.addAttribute("userDetails", userDetails);
         return "accountInfo";
     }
+
+    @RequestMapping("/accessDenied")
+    public String accessDenied() {
+        return "/accessDenied";
+    }
 }

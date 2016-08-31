@@ -11,7 +11,7 @@
 <body>
 
 <jsp:include page="_menu.jsp" />
-
+<br>
 <div class="page-title">Account Info</div>
 
 <div class="account-container">
