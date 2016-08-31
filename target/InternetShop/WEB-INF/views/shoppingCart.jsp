@@ -48,7 +48,11 @@
             </c:forEach>
         </table>
 
+        ----------------------------------------------------------------------------------------
         <br/>
+        Total: ${cartForm.amountTotal}
+
+        <br/><br/>
         <input type="submit" value="Update quantity"/>
 
     </form:form>
