@@ -6,7 +6,6 @@
 
 <div class="menu-container">
 
-    <div class="header-bar">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             Hello
             <a href="${pageContext.request.contextPath}/accountInfo">
@@ -18,10 +17,9 @@
         <c:if test="${pageContext.request.userPrincipal.name == null}">
             <a href="${pageContext.request.contextPath}/login">Login</a>
         </c:if>
-    </div>
-
-    <br>
-
+    |
+    <a href="<c:url value='/registerNewCustomer' />">Register</a>
+    <br><br>
     <a href="<c:url value='/list' />">Home</a>
     |
     <a href="<c:url value='/goCart' />">Cart</a>

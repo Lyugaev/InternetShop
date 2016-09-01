@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import net.lyugaev.shop.entity.Customer;
 import net.lyugaev.shop.model.Cart;
 import net.lyugaev.shop.model.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,5 +140,22 @@ public class AppController {
 
         // Redirect to shoppingCart page.
         return "redirect:/goCart";
+    }
+
+    //customer
+    @RequestMapping(value = { "/registerNewCustomer" }, method = RequestMethod.GET)
+    public String registerNewCustomer(ModelMap model) {
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "customerRegistration";
+    }
+
+    @RequestMapping(value = { "/registerNewCustomer" }, method = RequestMethod.POST)
+    public String saveCustomer(@Valid Customer customer, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "customerRegistration";
+        }
+
+        return "redirect:/list";
     }
 }
