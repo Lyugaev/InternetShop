@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,12 +37,17 @@
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td><a href="<c:url value='/add-${product.id}-to-cart' />">add to cart</a></td>
-            <td><a href="<c:url value='/edit-${product.id}-product' />">edit</a></td>
+            <security:authorize  access="hasRole('ADMIN')">
+                <td><a href="<c:url value='/edit-${product.id}-product' />">edit</a></td>
+            </security:authorize>
             <%--<td><a href="<c:url value='/delete-${product.id}-product' />">delete</a></td>--%>
         </tr>
     </c:forEach>
 </table>
 <br/>
-<a href="<c:url value='/new' />">Add new product</a>
+<security:authorize  access="hasRole('ADMIN')">
+    <a href="<c:url value='/new' />">Add new product</a>
+</security:authorize>
+
 </body>
 </html>
