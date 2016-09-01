@@ -12,7 +12,7 @@
 <jsp:include page="_menu.jsp" />
 
 <br>
-<div class="page-title">(for demo only)Login (logins: user1, admin1, pass=123)</div>
+<div class="page-title">(for demo only)Admin login (login=admin1, pass=123)</div>
 
 <div class="login-container">
 
@@ -31,7 +31,7 @@
           action="${pageContext.request.contextPath}/j_spring_security_check">
         <table>
             <tr>
-                <td>User Name *</td>
+                <td>Login *</td>
                 <td><input name="userName" /></td>
             </tr>
 

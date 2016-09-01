@@ -18,7 +18,7 @@
             <a href="${pageContext.request.contextPath}/login">Login</a>
         </c:if>
     |
-    <a href="<c:url value='/registerNewCustomer' />">Register</a>
+    <a href="<c:url value='/registerNewUser' />">Register</a>
     <br><br>
     <a href="<c:url value='/list' />">Home</a>
     |
