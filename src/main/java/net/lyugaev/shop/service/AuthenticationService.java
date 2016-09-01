@@ -6,7 +6,6 @@ package net.lyugaev.shop.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.lyugaev.shop.dao.AccountDAO;
 import net.lyugaev.shop.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,11 +20,11 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements UserDetailsService {
 
     @Autowired
-    private AccountDAO accountDAO;
+    private AccountService accountService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountDAO.findAccount(username);
+        Account account = accountService.findAccount(username);
         System.out.println("Account= " + account);
 
         if (account == null) {

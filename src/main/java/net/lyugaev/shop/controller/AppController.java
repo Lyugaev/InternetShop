@@ -62,7 +62,7 @@ public class AppController {
         Product product = new Product();
         model.addAttribute("product", product);
         model.addAttribute("edit", false);
-        return "registration";
+        return "productRegistration";
     }
 
     @RequestMapping(value = { "/new" }, method = RequestMethod.POST)
@@ -70,7 +70,7 @@ public class AppController {
                                ModelMap model) {
 
         if (result.hasErrors()) {
-            return "registration";
+            return "productRegistration";
         }
 
         productService.saveProduct(product);
@@ -83,7 +83,7 @@ public class AppController {
         Product product = productService.findById(id);
         model.addAttribute("product", product);
         model.addAttribute("edit", true);
-        return "registration";
+        return "productRegistration";
     }
 
     @RequestMapping(value = { "/edit-{id}-product" }, method = RequestMethod.POST)
@@ -91,7 +91,7 @@ public class AppController {
                                  ModelMap model, @PathVariable int id) {
 
         if (result.hasErrors()) {
-            return "registration";
+            return "productRegistration";
         }
 
         productService.updateProduct(product);
