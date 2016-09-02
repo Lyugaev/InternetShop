@@ -22,6 +22,11 @@ public class Account implements Serializable {
     private boolean active;
     private String userRole;
 
+    public Account() {
+        this.userRole = ROLE_USER;
+        this.active = true;
+    }
+
     @Id
     @Column(name = "User_Name", length = 20, nullable = false)
     public String getUserName() {
@@ -56,6 +61,9 @@ public class Account implements Serializable {
     }
 
     public void setUserRole(String userRole) {
+        if (userRole == null)
+            userRole = ROLE_USER;
+
         this.userRole = userRole;
     }
 

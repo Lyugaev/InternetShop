@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import net.lyugaev.shop.entity.Account;
 import net.lyugaev.shop.model.Cart;
 import net.lyugaev.shop.model.ProductInfo;
+import net.lyugaev.shop.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class AppController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    AccountService accountService;
 
     @Autowired
     MessageSource messageSource;
@@ -155,6 +159,8 @@ public class AppController {
         if (result.hasErrors()) {
             return "userRegistration";
         }
+
+        accountService.saveAccount(account);
 
         return "redirect:/list";
     }

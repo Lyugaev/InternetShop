@@ -19,6 +19,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public void saveAccount(Account account) {
+//        if (account.getUserRole() == null)
+//            account.setUserRole(Account.ROLE_USER);
+
         dao.saveAccount(account);
     }
 }
