@@ -8,4 +8,6 @@ import net.lyugaev.shop.entity.Account;
 public interface AccountService {
 
     public Account findAccount(String userName );
+
+    public void saveAccount(Account account);
 }

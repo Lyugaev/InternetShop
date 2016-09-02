@@ -14,9 +14,11 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name="Customer")
-public class Customer {
+public class Customer implements Serializable {
 
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

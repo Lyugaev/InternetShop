@@ -34,10 +34,6 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    public void deleteProductById(int id) {
-        dao.deleteProductById(id);
-    }
-
     public List<Product> findAllProducts() {
         return dao.findAllProducts();
     }
