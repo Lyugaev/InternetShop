@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Accounts")
@@ -17,9 +18,19 @@ public class Account implements Serializable {
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_USER = "USER";
 
+    @NotNull
+    @Id
+    @Column(name = "User_Name", length = 20, nullable = false)
     private String userName;
+
+    @NotNull
+    @Column(name = "Password", length = 20, nullable = false)
     private String password;
+
+    @Column(name = "Active", length = 1, nullable = false)
     private boolean active;
+
+    @Column(name = "User_Role", length = 20, nullable = false)
     private String userRole;
 
     public Account() {
@@ -27,8 +38,6 @@ public class Account implements Serializable {
         this.active = true;
     }
 
-    @Id
-    @Column(name = "User_Name", length = 20, nullable = false)
     public String getUserName() {
         return userName;
     }
@@ -37,7 +46,6 @@ public class Account implements Serializable {
         this.userName = userName;
     }
 
-    @Column(name = "Password", length = 20, nullable = false)
     public String getPassword() {
         return password;
     }
@@ -46,7 +54,6 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    @Column(name = "Active", length = 1, nullable = false)
     public boolean isActive() {
         return active;
     }
@@ -55,7 +62,6 @@ public class Account implements Serializable {
         this.active = active;
     }
 
-    @Column(name = "User_Role", length = 20, nullable = false)
     public String getUserRole() {
         return userRole;
     }

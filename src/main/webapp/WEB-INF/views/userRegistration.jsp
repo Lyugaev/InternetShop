@@ -27,7 +27,7 @@
 <h2>Create Account</h2>
 
 <form:form method="POST" modelAttribute="account">
-    <form:input type="hidden" path="userName" id="userName"/>
+    <%--<form:input type="hidden" path="userName" id="userName"/>--%>
     <table>
         <tr>
             <td><label for="userName">Login *: </label> </td>
