@@ -12,7 +12,7 @@
 <jsp:include page="_menu.jsp" />
 
 <br>
-<div class="page-title">(for demo only)Admin login (login=admin1, pass=123)</div>
+<div class="page-title">(for demo only) Admin login (login=admin, pass=123)</div>
 
 <div class="login-container">
 

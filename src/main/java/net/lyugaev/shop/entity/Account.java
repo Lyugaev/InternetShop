@@ -10,19 +10,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Accounts")
+@Table(name = "Account")
 public class Account implements Serializable {
 
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_USER = "USER";
 
+    @Size(min=1)
     @NotNull
     @Id
     @Column(name = "User_Name", length = 20, nullable = false)
     private String userName;
 
+    @Size(min=1)
     @NotNull
     @Column(name = "Password", length = 20, nullable = false)
     private String password;

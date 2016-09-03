@@ -24,4 +24,9 @@ public class AccountServiceImpl implements AccountService {
 
         dao.saveAccount(account);
     }
+
+    public boolean isLoginAlreadyExist(String login) {
+        Account account = dao.findAccount(login);
+        return account != null;
+    }
 }

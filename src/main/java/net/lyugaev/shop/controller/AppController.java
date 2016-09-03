@@ -1,6 +1,7 @@
 package net.lyugaev.shop.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -151,12 +153,19 @@ public class AppController {
     public String registerNewUser(ModelMap model) {
         Account account = new Account();
         model.addAttribute("account", account);
+        model.addAttribute("edit", false);
         return "userRegistration";
     }
 
     @RequestMapping(value = { "/registerNewUser" }, method = RequestMethod.POST)
     public String saveUser(@Valid Account account, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
+            return "userRegistration";
+        }
+
+        if (accountService.isLoginAlreadyExist(account.getUserName())) {
+            FieldError loginError = new FieldError("account","userName",messageSource.getMessage("non.unique.userName", new String[]{account.getUserName()}, Locale.getDefault()));
+            result.addError(loginError);
             return "userRegistration";
         }
 
