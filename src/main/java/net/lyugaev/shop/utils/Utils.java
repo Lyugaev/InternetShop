@@ -26,8 +26,7 @@ public class Utils {
         return Cart;
     }
 
-//    public static void removeCartInSession(HttpServletRequest request) {
-//        request.getSession().removeAttribute("myCart");
-//    }
-
+    public static void removeCartInSession(HttpServletRequest request) {
+        request.getSession().removeAttribute("myCart");
+    }
 }

@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import net.lyugaev.shop.entity.Account;
+import net.lyugaev.shop.entity.Customer;
+import net.lyugaev.shop.entity.Order;
 import net.lyugaev.shop.model.Cart;
+import net.lyugaev.shop.model.CustomerInfo;
 import net.lyugaev.shop.model.ProductInfo;
 import net.lyugaev.shop.service.AccountService;
+import net.lyugaev.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +41,9 @@ public class AppController {
 
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    OrderService orderService;
 
     @Autowired
     MessageSource messageSource;
@@ -170,6 +178,35 @@ public class AppController {
         }
 
         accountService.saveAccount(account);
+
+        return "redirect:/list";
+    }
+
+    //new order registration
+    @RequestMapping(value = { "/registerNewOrder" }, method = RequestMethod.GET)
+    public String registerNewOrder(ModelMap model) {
+        //prepare customer info for order
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "orderRegistration";
+    }
+
+    @RequestMapping(value = { "/registerNewOrder" }, method = RequestMethod.POST)
+    public String saveOrder(HttpServletRequest request, @ModelAttribute("customer") @Validated Customer customer, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "orderRegistration";
+        }
+
+        Cart cart = Utils.getCartInSession(request);
+        if (cart.isEmpty()) {
+            return "redirect:/shoppingCart";
+        }
+
+        Order order = new Order();
+        order.setCustomer(customer);
+        //orderService.saveOrder(cart);
+
+        Utils.removeCartInSession(request);
 
         return "redirect:/list";
     }

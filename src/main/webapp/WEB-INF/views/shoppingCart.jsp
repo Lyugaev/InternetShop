@@ -51,6 +51,7 @@
         ----------------------------------------------------------------------------------------
         <br/>
         Total: ${cartForm.amountTotal}
+        <a href="<c:url value='/registerNewOrder' />">Proceed to checkout</a>
 
         <br/><br/>
         <input type="submit" value="Update quantity"/>

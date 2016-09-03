@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class Customer implements Serializable {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @NotEmpty
     @Column(name = "ADDRESS")
     private String address;
 
@@ -39,6 +41,7 @@ public class Customer implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
+    @NotEmpty
     @Column(name = "PHONE")
     private String phone;
 
