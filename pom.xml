@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <springframework.version>4.0.6.RELEASE</springframework.version>
+        <springframework.version>4.3.0.RELEASE</springframework.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <mysql.connector.version>5.1.31</mysql.connector.version>
         <joda-time.version>2.3</joda-time.version>
@@ -129,7 +129,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
 
@@ -144,6 +144,13 @@
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
             <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.0.RELEASE</version>
             <scope>test</scope>
         </dependency>
 
