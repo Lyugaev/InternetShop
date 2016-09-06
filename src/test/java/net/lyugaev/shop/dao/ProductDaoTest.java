@@ -8,24 +8,30 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
 
 /**
  * Created by dmitry on 05.09.16.
  */
 public class ProductDaoTest {
 
-    private Session mock;
+    private ProductDao productDao;
+    private Product product;
+    private Session sessionMock;
+    private Criteria criteriaMock;
 
     @Before
     public void init() {
-        mock = createMock(Session.class);
+        productDao = new ProductDaoImpl();
+        product = new Product();
+        sessionMock = createMock(Session.class);
+        criteriaMock = createMock(Criteria.class);
     }
 
     @Test
     public void findById() {
-        Criteria crit = mock.createCriteria(Product.class);
-        crit.add(Restrictions.eq("id", 3));
-        //return (Product) crit.uniqueResult();
+        productDao.findById(3);
+
 
     }
 
