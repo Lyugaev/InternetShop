@@ -1,6 +1,8 @@
 package net.lyugaev.shop.dao;
 
 //import net.lyugaev.shop.configuration.AppConfig;
+//import net.lyugaev.shop.configuration.HibernateConfiguration;
+//import net.lyugaev.shop.configuration.WebSecurityConfig;
 import net.lyugaev.shop.entity.Product;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -19,7 +21,7 @@ import static org.easymock.EasyMock.expect;
  */
 
 //@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = {AppConfig.class})
+//@ContextConfiguration(classes = {AppConfig.class, HibernateConfiguration.class, WebSecurityConfig.class})
 public class ProductDaoTest {
 
     private ProductDao productDao;
