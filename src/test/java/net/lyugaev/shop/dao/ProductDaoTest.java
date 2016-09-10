@@ -21,7 +21,7 @@ public class ProductDaoTest {
     private Criteria criteriaMock;
 
     @Before
-    public void init() {
+    public void setup() {
         productDao = new ProductDaoImpl();
         product = new Product();
         sessionMock = mock(Session.class);

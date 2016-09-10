@@ -14,7 +14,7 @@ import net.lyugaev.shop.dao.ProductDao;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductDao dao;
+    ProductDao dao;
 
     public Product findById(int id) {
         return dao.findById(id);

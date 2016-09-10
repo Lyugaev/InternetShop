@@ -81,4 +81,29 @@ public class Product implements Serializable {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Product))
+            return false;
+        Product other = (Product) obj;
+
+        if (name != other.name)
+            return false;
+
+        if (description != other.description)
+            return false;
+
+        if (addedDate != other.addedDate)
+            return false;
+
+        if (price != other.price)
+            return false;
+        
+        return true;
+    }
 }
