@@ -39,10 +39,10 @@ public class ProductServiceTest {
         product.setId(3);
         when(dao.findById(3)).thenReturn(product);
 
-        productService.findById(3);
+        Product product1 = productService.findById(3);
 
         verify(dao).findById(3);
-        assertThat(product.getId(), equalTo(3));
+        assertThat(product1.getId(), equalTo(3));
     }
 
     @Test(expected = RuntimeException.class)

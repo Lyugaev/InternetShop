@@ -12,7 +12,7 @@ import net.lyugaev.shop.dao.AccountDao;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private AccountDao dao;
+    AccountDao dao;
 
     public Account findAccount(String userName ) {
         return dao.findAccount(userName);

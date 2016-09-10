@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderDao dao;
+    OrderDao dao;
 
     public Order findById(int id) {
         return dao.findById(id);
